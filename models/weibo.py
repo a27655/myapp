@@ -6,8 +6,8 @@ class Weibo(db.Model, ModelMixin):
     __tablename__ = 'weibos'
     # 下面是字段定义
     id = db.Column(db.Integer, primary_key=True)
-    weibo = db.Column(db.String())
-    created_time = db.Column(db.String(), default=0)
+    weibo = db.Column(db.String(1000))
+    created_time = db.Column(db.Integer, default=0)
     comments_num = db.Column(db.Integer, default=0)
     # 外键
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

@@ -5,8 +5,8 @@ from . import db
 class Blog(db.Model, ModelMixin):
     __tablename__ = 'blogs'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String())
-    content = db.Column(db.String())
+    title = db.Column(db.String(100))
+    content = db.Column(db.String(10000))
     created_time = db.Column(db.Integer, default=0)
     updated_time = db.Column(db.Integer, default=0)
     comments_num = db.Column(db.Integer, default=0)

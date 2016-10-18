@@ -5,7 +5,7 @@ from . import db
 class Comment(db.Model, ModelMixin):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String())
+    content = db.Column(db.String(1000))
     created_time = db.Column(db.Integer, default=0)
     # 外键
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

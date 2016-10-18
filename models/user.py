@@ -9,15 +9,15 @@ from . import db
 class User(db.Model, ModelMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String())
-    password = db.Column(db.String())
-    avatar = db.Column(db.String())
+    username = db.Column(db.String(50))
+    password = db.Column(db.String(50))
+    avatar = db.Column(db.String(500))
     created_time = db.Column(db.Integer, default=0)
-    qq = db.Column(db.String())
-    email = db.Column(db.String())
+    qq = db.Column(db.String(20))
+    email = db.Column(db.String(50))
     # 签名
-    sign = db.Column(db.String())
-    captcha = db.Column(db.String())
+    sign = db.Column(db.String(500))
+    captcha = db.Column(db.String(20))
     # 下面定义关系
     comments = db.relationship('Comment', backref='user', foreign_keys='Comment.user_id')
     blogs = db.relationship('Blog', backref='user', foreign_keys='Blog.user_id')

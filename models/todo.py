@@ -5,9 +5,9 @@ from . import db
 class Todo(db.Model, ModelMixin):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True)
-    task = db.Column(db.String())
+    task = db.Column(db.String(500))
     created_time = db.Column(db.Integer, default=0)
-    tag = db.Column(db.String())
+    tag = db.Column(db.String(500))
     #外键
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
