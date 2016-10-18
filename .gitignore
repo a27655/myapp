@@ -87,3 +87,9 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+routes/__pycache__/*
+models/__pycache__/*
+routes/.DS_Store
+models/.DS_Store
+.idea/*

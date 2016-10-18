@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - Debug欢乐园</title>
+    {% block head %}
+    <link rel="stylesheet" href="/static/css/base.css">
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
+    <script src="/static/js/api.js"></script>
+    <!-- <script src="/static/js/base.js"></script> -->
+    {% endblock %}
+</head>
+<body>
+  <!-- 导航栏 -->
+  <div class="base-div-have-head">
+    <div class="base-div-head">
+      {% if user.id > 0 %}
+      <a class="base-a-head-logout"href="{{url_for('user.logout')}}">注销</a>
+      {% endif %}
+    {% block a %}
+      <a class="base-span-head"href="{{url_for('user.index')}}">Debug欢乐园</a>
+      <a class="base-a-head base-a-head-fontcolor"href="{{url_for('user.home')}}">Home</a>
+      <a class="base-a-head base-a-head-fontcolor"href="{{url_for('user.user_login')}}">Login</a>
+      <a class="base-a-head base-a-head-fontcolor"href="{{url_for('todo.all_todo')}}">Todo</a>
+      <a class="base-a-head base-a-head-fontcolor"href="{{url_for('weibo.index')}}">Weibo</a>
+      <a class="base-a-head base-a-head-fontcolor gua-active"href="/blog">Blog</a>
+    {% endblock %}
+    </div>
+  </div>
+    <!-- 导航栏下图片 -->
+  <div class="base-div-head-img">
+    <img id="base-id-head-img"src="{% block img %}{% endblock %}" alt="" />
+  </div>
+
+  <!-- 主内容（分左，右） -->
+  <div class="base-div-have-content">
+    <!-- 左内容 -->
+    <div class="base-div-lift-content">
+      {% block content %}{% endblock %}
+    </div>
+    <!-- 左边栏 -->
+    <div class="base-div-have-right-content">
+      <div class="base-div-right-content">
+        <!-- <div class="base-div-right-content-avator">
+          <img id="base-id-tmimg"src="/static/img/tt.jpg" alt="头像" />
+        </div>
+        <div class="base-div-right-content-tag">
+          <p></p>
+          <p>常用的掏粪工具：</p>
+          <p>
+            <li>Python&Flask</li>
+            <li>JavaScript</li>
+            <li>HTML</li>
+            <li>CSS</li>
+          </p>
+          <p>276551515@qq.com</p>
+          <p>如需要，请联系</p>
+        </div> -->
+        <div class="base-div-right-content-xxx">
+          <div class="base-div-right-content-loginuser">
+
+            <div class="base-div-right-content-loginuser-avatar">
+              <a href="{{url_for('user.home')}}"><img height="150px"width="150px" src="{{user.avatar}}" alt="" /></a>
+            </div>
+            <div class="base-div-right-content-loginuser-name">
+              你好：<a class="base-div-right-content-span base-div-right-content-span-username"href="{{url_for('user.home')}}">{{user.username}}</a>
+              {% if user.id == -1 %}
+                <a class="base-div-right-content-span base-div-right-content-span-username"href="{{url_for('user.user_login')}}">登录</a>
+              {% endif %}
+            </div>
+            <div class="base-div-right-content-loginuser-qq">
+              <img src="/static/img/qq.png" alt="" /> :<span base-div-right-content-span>{{user.qq}}</span>
+            </div>
+            <div class="base-div-right-content-loginuser-email">
+              <img src="/static/img/email.png" alt="" /> :<span base-div-right-content-span>{{user.email}}</span>
+            </div>
+            <div class="base-div-right-content-loginuser-ll">
+                说明：目前登录用户仅可评论与修改资料，后续功能博主正在卖力增加中......
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 底栏 -->
+  <div class="base-div-have-footer">
+    <div class="base-div-footer">
+      <div class="base-div-footer-a">
+        <a class="base-a-footer"href="/blog">Blog</a>
+        <a class="base-a-footer"href="/weibo">Weibo</a>
+        <a class="base-a-footer"href="/todo">Todo</a>
+        <a class="base-a-footer"href="{{url_for('user.user_login')}}">Login</a>
+        <a class="base-a-footer"href="{{url_for('user.home')}}">Home</a>
+      </div>
+      <div class="base-div-footer-copyright">
+        <p>Design by：chunguang.</p>
+        <p>Thanks, GUA.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

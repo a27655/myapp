@@ -1,0 +1,173 @@
+body {
+  font-family: "Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+  font-size: 20px;
+  margin: 0px;
+}
+
+a.gua-active {
+  color: white;
+  background-color: #cc9900;
+  border-radius: 6px;
+  }
+
+.base-div-have-head {
+  width: 100%;
+  background-color: white;
+  position: fixed;
+
+}
+.base-div-head {
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 30px;
+  max-width: 87%;
+  min-width: 500px;
+  height: 50px;
+}
+a.base-span-head {
+  float: left;
+  color: #cc9900;
+  font-size: 40px;
+  text-decoration: none;
+}
+a.base-a-head {
+  display: inline-block;
+  float: right;
+  padding: 10px 40px;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.base-a-head-fontcolor {
+  color: black;
+}
+
+a.base-span-head:hover {
+  color: #0275d8;
+  cursor: pointer;
+
+}
+a.base-a-head:hover {
+  color: white;
+  background-color: #cc9900;
+  border-radius: 6px;
+}
+.base-div-have-content {
+  display: flex;
+  max-width: 85%;
+  min-width: 500px;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  margin: 0 auto;
+}
+.base-div-lift-content {
+  flex-grow: 4;
+  padding-right: 20px;
+  border-right-width: 0.5px;
+  border-right-color: #cc9900;
+  border-right-style: solid;
+  width: 80%;
+}
+.base-div-have-right-content {
+  flex-grow: 1;
+  min-width: 250px;
+  width: 20%;
+}
+
+
+#base-id-tmimg {
+  width: 150px;
+  height: 150px;
+  text-align: center;
+
+  padding-right: 30px;
+
+}
+
+#base-id-head-img {
+  width: 100%;
+  background-size: auto 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+  margin-top: 105px;
+}
+
+.base-div-have-footer {
+  width: 100%;
+}
+.base-div-footer {
+  text-align: center;
+
+}
+a.base-a-footer {
+  text-decoration: none;
+  color: black;
+  font-size: 13px;
+}
+
+.base-div-footer-copyright {
+  font-size: 15px;
+}
+
+a.base-a-footer:hover {
+  color: #cc9900;
+}
+
+
+.base-div-right-content-tag {
+
+}
+.base-div-right-content {
+    margin-left: 30%;
+}
+
+.base-div-have-right-content {
+    margin-top: 50px;
+}
+.base-div-right-content-loginuser-name {
+    margin: 50px 0 0 0;
+    font-size: 16px;
+    /* font-style: oblique; */
+    font-family: cursive;
+    color: #2196F3;
+}
+.base-div-right-content-loginuser-qq {
+    margin: 10px 0;
+    font-size: 18px;
+    font-family: cursive;
+    color: #2196F3;
+}
+.base-div-right-content-loginuser-email {
+  margin: 10px 0;
+  font-size: 18px;
+  font-family: cursive;
+  color: #2196F3;
+}
+.base-div-right-content-loginuser-ll {
+    font-size: 13px;
+    margin: 100px 0;
+    font-style: italic;
+    color: #F76333;
+}
+.base-div-right-content-span {
+  margin-left: 20px;
+}
+.base-a-head-logout {
+  float: right;
+  color: #cc9900;
+  margin-top: 10px;
+  font-size: 18px;
+}
+.base-a-head-logout:hover {
+  background-color: #cc9900;
+  color: white;
+}
+.base-div-right-content-span {
+  color: #F76333;
+  font-size: 20px;
+  font-style: italic;
+}

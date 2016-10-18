@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}todo{% endblock %}
+{% block head %}
+  {{ super() }}
+  <script src="/static/js/todo.js"></script>
+{% endblock %}
+{% block a %}
+  <a class="base-span-head">Debug欢乐园</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/">Registered</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/">Login</a>
+  <a class="base-a-head base-a-head-fontcolor gua-active"href="/todo">Todo</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/weibo">Weibo</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/blog">Blog</a>
+{% endblock %}
+{% block img %}/static/img/tm-todo1-img.jpg{% endblock %}
+
+{% block content %}
+   <form class="" action="/todo/update" method="post">
+     <input type="hidden" name="todo-id" value="{{ todo_id }}">
+     <input type="text" name="content">
+     <button type="submit" name="button">编辑完成</button>
+   </form>
+{% endblock %}
+{% block right %}{% endblock %}

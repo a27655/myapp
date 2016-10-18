@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+{% block head %}
+  {{ super() }}
+  <!-- <link rel="stylesheet" href="/static/css/pure-min.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <script src="/static/js/weibo.js"></script> -->
+  <style media="screen">
+    .user-home {
+      width: 80%;
+      margin: 0 auto;
+    }
+    .user-home-san {
+    padding: 20px;
+    border-style: solid;
+    border-width: 0px;
+    border-color: #d4d2d2;
+    border-bottom-width: 1px;
+    }
+    .user-home-img {
+    padding: 0 0 30px 30px;
+    background-color: #02564e;
+    z-index: -10;
+    border-style: solid;
+    border-color: #d4d2d2;
+    border-width: 3px;
+    border-radius: 3px;
+    }
+    .avatar {
+    position: relative;
+    top: 80px;
+    z-index: 100;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+    border-radius: 5px;
+    }
+    .span-username {
+    margin-left: 20px;
+    position: relative;
+    top: 10px;
+    font-size: 25px;
+    color: white;
+    }
+    .span-sign {
+    display: inline-block;
+    padding: 12px;
+    margin-left: 202px;
+    color: #336699;
+    font-size: 17px;
+    }
+    .span-qq {
+    margin-left: 20px;
+    color: #337dc2;
+    font-style: italic;
+    font-size: 17px;
+    }
+    .span-email {
+    margin-left: 20px;
+    color: #337dc2;
+    font-style: italic;
+    font-size: 17px;
+    }
+    .user-home-list {
+      padding: 20px;
+    }
+    .user-home-qq {
+      padding: 20px 0;
+    }
+    .user-home-email {
+      padding: 20px 0;
+    }
+    .user-two-all {
+      display: flex;
+    }
+    .user-home-list {
+      flex-grow: 1;
+      width: 50%;
+    }
+    .user-home-star-fans {
+      flex-grow: 1;
+      width: 50%;
+    }
+    .user-home-qq {
+    margin-left: 20px;
+    }
+    .user-home-email {
+    margin-left: 20px;
+    }
+    .user-home-star-fans {
+    padding: 20px;
+    }
+    .user-home-star {
+    padding: 20px 0;
+    }
+    .user-home-fans {
+    padding: 20px 0;
+    }
+    .a-star-fans {
+    text-decoration: inherit;
+    color: #4681c5;
+    font-size: 17px;
+    font-style: oblique;
+    }
+    .user-have-san-a {
+    text-align: right;
+    padding: 22px;
+    }
+    .user-san-a {
+    color: #F76333;
+    font-size: 16px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+    text-decoration: inherit;
+    border-radius: 3px;
+    }
+    .user-san-a:hover {
+      background-color: #F76333;
+      color: white;
+    }
+
+    .user-home-message {
+      font-size: 17px;
+      margin: 20px;
+      text-align: center;
+      color: #F76333;
+    }
+    .span-message {
+    font-style: YouYuan;
+    font-family: YouYuan;
+    /* margin-top: 14px; */
+    position: relative;
+    top: 10px;
+    font-size: 14px;
+    color: white;
+    }
+  </style>
+{% endblock %}
+{% block a %}
+  <a class="base-span-head"href="{{url_for('user.index')}}">Debug欢乐园</a>
+  <a class="base-a-head base-a-head-fontcolor gua-active"href="{{url_for('user.home')}}">Home</a>
+  <a class="base-a-head base-a-head-fontcolor"href="{{url_for('user.user_login')}}">Login</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/todo">Todo</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/weibo">Weibo</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/blog">Blog</a>
+{% endblock %}
+{% block img %}/static/img/tm-user2-img.jpg{% endblock %}
+{% block content %}
+    <div class="user-home">
+      <div class="">
+
+      </div>
+      <div class="user-home-all">
+        <div class="user-home-san">
+          <div class="user-home-img">
+            <img height="150px"width="150px"src="{{ user.avatar }}" class="avatar">
+            <span class="span-username">{{ user.username }}</span>
+            <span class="span-message"> , 放学别走 ！</span>
+          </div>
+
+          <span class="span-sign">{{ user.sign }}</span>
+        </div>
+      <div class="user-two-all">
+        <div class="user-home-list">
+          <div class="user-home-qq">
+            <a href="#"><img src="/static/img/qq.png" alt="" /></a> :<span class="span-qq">{{ user.qq }}</span>
+          </div>
+          <div class="user-home-email">
+            <a href="#"><img src="/static/img/email.png" alt="" /></a> :<span class="span-email">{{ user.email }}</span>
+          </div>
+        </div>
+        <div class="user-home-star-fans">
+          <div class="user-home-star">
+            <a class="a-star-fans"href="#"><img src="/static/img/fans.png" alt="" />关注我的亲 ：</a>
+            {% for f in user.asstars.fans %}
+              <span class="fans-avatar">
+                <a href="{{url_for('user.home', id=f.id)}}"><img height="24px"width="24px"src="{{avatar}}" alt="" /></a><img src="{{avatar}}" alt="" />
+              </span>
+            {% endfor %}
+          </div>
+          <div class="user-home-fans">
+            <a class="a-star-fans"href="#"><img src="/static/img/xin.png" alt="" />我关注的人 ：</a>
+            {% for s in user.asfans.star %}
+              <span class="star-avatar">
+                <a href="{{url_for('user.home', id=s.id)}}"><img height="24px"width="24px"src="{{avatar}}" alt="" /></a><img src="{{avatar}}" alt="" />
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="user-have-san-a">
+        <a class="user-san-a"href="{{url_for('user.edit')}}">完善资料</a>
+      </div>
+      <div class="user-home-message">
+        {{message}}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block right %}{% endblock %}

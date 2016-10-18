@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}blog{% endblock %}
+{% block head %}
+  {{ super() }}
+  <!-- <link rel="stylesheet" href="/static/css/pure-min.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <script src="/static/js/weibo.js"></script> -->
+  <style media="screen">
+    .blog-container{
+      width: 80%;
+      margin: 0 auto;
+    }
+    .add-box {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .add-box-input {
+      width: 100%;
+      height: 30px;
+      padding: 5px;
+      margin: 10px 0;
+    }
+    .add-box-textarea {
+      width: 100%;
+      height: 200px;
+      padding: 5.6px;
+      margin: 20px 0;
+    }
+    .add-box-button {
+      width: 102%;
+      height: 40px;
+      padding: 10px 0;
+      margin: 10px 0;
+      color: white;
+      background: #73b0d1;
+      border-style: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .blog-cell-time {
+      font-size: 17px;
+      color: #9E9E9E;
+      font-family: cursive;
+      font-style: oblique;
+    }
+    .blog-cell{
+      padding: 20px 0;
+    }
+    .blog-cell-title:hover {
+      color: #cc9900;
+      text-decoration: underline;
+    }
+    .blog-cell-title {
+      color: #73b0d1;
+      font-size: 40px;
+      text-decoration: none;
+      font-style: oblique;
+    }
+      .blog-cell {
+      border-style: dashed;
+      border-width: 0px;
+      border-color: #9E9E9E;
+      border-bottom-width: 1px;
+    }
+
+  </style>
+{% endblock %}
+
+{% block img %}/static/img/tm-blog-img.jpg{% endblock %}
+
+
+
+{% block content %}
+
+      <div class="box blog-container">
+        {% for b in blogs %}
+          <div class="blog-cell cell item" data-id={{b.id}}>
+            <div class="blog-cell-time">{{b.created_time}}</div>
+            <a class="blog-cell-title"href="{{url_for('blog.cell', blog_id=b.id)}}">{{ b.title }}</a>
+          </div>
+        {% endfor %}
+
+        {% if user.id == 1 %}
+        <div class="box add-box">
+          <form action={{ url_for('blog.add') }} method="post">
+              <div class="add-box-have-input">
+                <input class="add-box-input"type="text" name="title" placeholder="标题"></input>
+              </div>
+              <div class="add-box-have-textarea">
+                <textarea class="add-box-textarea" name="content" rows="8" cols="40" placeholder="内容"></textarea>
+              </div>
+              <div class="add-box-have-button">
+                <button class="add-box-button" type="submit" name="button">发表新博客</button>
+              </div>
+          </form>
+        </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
+{% block right %}{% endblock %}

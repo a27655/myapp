@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页-Debug欢乐园</title>
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
+    <script src="/static/js/api.js"></script>
+    <style media="screen">
+        body {
+          font-family: "Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu;
+          font-size: 20px;
+          margin: 0px;
+        }
+        .base-div-have-head {
+          width: 100%;
+          background-color: white;
+          position: fixed;
+        }
+
+        .base-div-head {
+          margin: 0 auto;
+          padding-top: 30px;
+          padding-bottom: 30px;
+          max-width: 87%;
+          min-width: 1655.6px;
+
+
+        }
+
+        .base-div-have-zz {
+          width: 100%;
+          background-color: white;
+
+        }
+
+        .base-div-zz {
+          margin: 0 auto;
+          padding-top: 25px;
+          padding-bottom: 30px;
+          max-width: 50%;
+          min-width: 951.5px;;
+          height: 50px;
+        }
+        #head-id-png-left1 {
+          float: left;
+        }
+        #head-id-png-right1 {
+          float: right;
+        }
+        #head-id-png-left2 {
+          float: left;
+
+        }
+        #head-id-png-right2 {
+          float: right;
+
+        }
+        #base-id-head-img {
+          width: 100%;
+          margin-top: 80px;
+        }
+
+        .one-span-head {
+          padding-top: 2.5px;
+          display: inline-block;
+          float: right;
+          padding-right: 43.5%;
+          padding-left: 41.8%;
+
+        }
+
+
+
+        .one-span-ddd {
+          float: right;
+          padding-top: 18px;
+          padding-right: 26.5%;
+          padding-left: 24.5%;
+          color: #cc9900;
+        }
+
+        .one-span-login {
+          float: left;
+          padding-top: 18px;
+          color: #eb657d;
+        }
+
+        .one-span-blog {
+          float: right;
+          padding-top: 18px;
+          color: #eb657d;
+        }
+
+        .clearfix::after {
+        content: '';
+        display: block;
+        clear: both;
+        }
+
+        .base-div-footer-copyright {
+          text-align: center;
+          font-size: 15px;
+        }
+
+        a:hover {
+          background-color: #cc9900;
+          border-radius: 6px;
+
+        }
+    </style>
+</head>
+<body>
+  <div class="base-div-have-head">
+    <div class="base-div-head clearfix">
+      <a id="head-id-png-left2"href="{{url_for('user.user_login')}}"><img src="/static/img/left_arrow2.png" alt="" /></a>
+
+      <a id="head-id-png-right2"href="{{url_for('blog.index')}}"><img src="/static/img/right_arrow2.png" alt="" /></a>
+      <span class="one-span-head">"多观察 多思考 多总结"</span>
+    </div>
+  </div>
+  <div class="base-div-head-img">
+    <img id="base-id-head-img"src="/static/img/tm-one1.jpg" alt="" />
+  </div>
+  <div class="base-div-have-zz">
+    <div class="base-div-zz">
+      <a id="head-id-png-left1"href="{{url_for('user.user_login')}}"><img src="/static/img/left_arrow1.png" alt="" /></a>
+      <span class="one-span-login">Login</span>
+      <a id="head-id-png-right1"href="{{url_for('blog.index')}}"><img src="/static/img/right_arrow1.png" alt="" /></a>
+      <span class="one-span-blog">Blog</span>
+      <span class="one-span-ddd">春光的Debug乐园</span>
+
+    </div>
+
+  </div>
+
+  <div class="base-div-footer-copyright">
+      <p>Design by：chunguang.</p>
+      <p>Thanks, GUA.</p>
+  </div>
+
+</body>
+</html>

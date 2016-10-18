@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block title %}blog{% endblock %}
+{% block head %}
+  {{ super() }}
+  <script src="/static/js/blog.js"></script>
+  <style media="screen">
+    .blog-container{
+      width: 80%;
+      margin: 0 auto;
+    }
+    .blog-cell-title {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 2px;
+    color: #868484;
+    }
+
+    .blog-cell-dodo {
+      text-align: right;
+      font-size: 15px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-style: dashed;
+      border-width: 0px;
+      border-color: #c1bfbf;
+      border-bottom-width: 1px;
+    }
+    .blog-cell-dodo-time {
+      color: #7bb3cc;
+      font-family: cursive;
+      font-style: oblique;
+    }
+    .dododo {
+    text-decoration: none;
+    color: #cc9900;
+    }
+    .dododo:hover {
+      background-color: #7bb3cc;
+      border-radius: 3px;
+    }
+    .span-updated-time {
+      text-align: right;
+      color: #7bb3cc;
+      font-family: cursive;
+      font-style: oblique;
+      font-size: 15px;
+      margin: 40px 0;
+    }
+    .blog-comment-have-input {
+      width: 100%;
+      margin: 0 auto;
+    }
+    .blog-comment-have-button {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .blog-comment-input {
+      width: 100%;
+      height: 30px;
+      padding: 5px;
+      margin: 10px 0;
+      border-color: #7bb3cc;
+      border-style: solid;
+      border-width: 0.5px;
+    }
+
+    .blog-comment-button {
+      width: 101.7%;
+      height: 38px;
+      margin: 10px 10px 10px 0;
+      color: #7bb3cc;
+      /* border-color: white; */
+      background-color: #ffffff;
+      border-width: 0.5px;
+      border-style: solid;
+      border-color: #7bb3cc;
+    }
+    .blog-comment-button:hover {
+      background-color: #7bb3cc;
+      color: white;
+    }
+    .all-comment {
+    width: 98.6%;
+    margin-top: 20px;
+    }
+    .all-all-comment {
+    width: 98%;
+    margin: 0 0 0 5%;
+    border-radius: 6px;
+    }
+    .cell-inner {
+      padding: 5px;
+      line-height: 100%;
+      border: 1px solid #e2e2e2;
+      margin-top: -1px;
+      height: 50px;
+      background-color: #f2f3f0;
+    }
+    .comment-img {
+      margin-top: 11px;
+      margin-left: 10px;
+    }
+    .span-margin {
+    margin: 0 10px;
+    }
+    .cell-inner-name {
+      font-size: 14px;
+      margin: 10px;
+      color: red;
+    }
+    .cell-inner-comment {
+      font-size: 16px;
+    }
+    .cell-inner-name-time {
+    float: right;
+    font-size: 14px;
+    color: #9E9E9E;
+    font-family: cursive;
+    font-style: oblique;
+    }
+
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.blog-cell-dodo-comment').on('click',function(){
+        var commentNum = $(this)
+        var commentDiv = commentNum.closest('.blog-cell').find('.comment-div')
+        commentDiv.toggle()
+      })
+    })
+  </script>
+{% endblock %}
+
+{% block img %}/static/img/tm-blog-img.jpg{% endblock %}
+
+
+
+{% block content %}
+
+      <div class="box blog-container">
+
+          <div class="blog-cell cell item" data-id={{b.id}}>
+            <div class="blog-cell-title">{{ b.title }}</div>
+            <div class="blog-cell-dodo">
+              <span class="blog-cell-dodo-time">{{ b.created_time }}</span>
+              {% if user.id == 1 %}
+              <a class="blog-cell-dodo-edit dododo"href={{ url_for('.edit', blog_id=b.id) }} class="weibo-update">编辑</a>
+              <a class="blog-cell-dodo-delete dododo"href={{ url_for('.delete', blog_id=b.id) }} class="weibo-delete">删除</a>
+              {% endif %}
+              <a class="blog-cell-dodo-comment dododo"href="#" class="com">评论(<span class="blog-comments_num">{{ b.comments_num }}</span>)</a>
+            </div>
+            <div class="span-content">{{ b.content }}</div>
+            <div class="span-updated-time">
+              最后一次修改：{{b.updated_time}}
+            </div>
+
+
+            <div class="comment-div hide">
+              <div class="blog-div-comment">
+                <div class="comment-form">
+                <!-- <form action="{{url_for('blog.comment')}}" method="post" class="comment-form"> -->
+                  <input class="blog-addcomment-id"type="hidden" name="blog_id" value="{{ b.id }}">
+                  <div class="blog-comment-have-input">
+                    <input class="blog-comment-input"name="content"placeholder="Comment">
+                  </div>
+                  <div class="blog-comment-have-button">
+                    <button class="blog-comment-button"type="submit">评论</button>
+                  </div>
+                <!-- </form> -->
+                </div>
+              </div>
+              <div class="all-comment">
+                <div class="all-all-comment">
+                {% for c in b.comments %}
+                  <div class="cell-inner item">
+                    <img class="comment-img"width="30px"height="30px"src="{{ c.user.avatar }}">
+                    <span class="cell-inner-name name span-margin span-margin-name">{{ c.user.username }} :</span>
+                    <span class="cell-inner-comment comment">{{ c.content }}</span>
+                    <span class="cell-inner-name-time time right span-margin">{{ c.created_time }}</span>
+                  </div>
+                {% endfor %}
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+{% endblock %}
+{% block right %}{% endblock %}

@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% block title %}weibo{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/static/css/pure-min.css">
+  <link rel="stylesheet" href="/static/css/main.css">
+  <script src="/static/js/weibo.js"></script>
+  <style media="screen">
+    .background {
+      width: 900px;
+      margin: 0 auto;
+    }
+    .add-box{
+      width: 900px;
+      padding: 0;
+      height: 200px;
+      text-align: center;
+
+    }
+    input#id-input-weibo {
+    height: 50px;
+    padding-left: 20px;
+    }
+
+    button#id-button-weibo-add {
+    margin-top: 30px;
+    background-color: #cc9900;
+    height: 40px;
+    width: 200px;
+    }
+
+    .cell {
+    padding: 10px;
+    line-height: 120%;
+    border-bottom: 1px solid #e2e2e2;
+
+    }
+    .span-weibo-content {
+      font-size: 17px;
+
+    }
+    .weibo-button {
+      color: white;
+      background: #cc9900;
+      border: 0;
+      padding: 5px 10px;
+      margin-right: 10px;
+      border-radius: 3px;
+    }
+    a.com {
+      color: #2196F3;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+    span.right.span-margin.span-time {
+      padding: 5px;
+      color: #9E9E9E;
+    }
+
+    .avatar-s {
+    max-width: 30px;
+    max-height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+    }
+
+    .cell-inner.item {
+    height: 50px;
+    background-color: #f2f3f0;
+    }
+
+    span.time.right.span-margin {
+      padding: 10px;
+      color: #9E9E9E;
+    }
+
+    .span-margin-name {
+      color: red;
+    }
+
+    .weibo-div-comment {
+    width: 99.5%;
+    text-align: center;
+    height: 90px;
+    }
+
+    input.m {
+      width: 98.5%;
+      margin-top: 20px;
+      text-align: center;
+      padding: 7px;
+    }
+
+    button.weibo-button-addcomment {
+      float: right;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      border-style: none;
+      background: #cc9900;
+      color: white;
+    }
+    input.weibo-update-content {
+      width: 99.5%;
+      height: 30px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .weibo-div-update {
+      height: 98px;
+    }
+
+    button.weibo-update-ok {
+      float: right;
+      margin-top: 15px;
+      padding: 6px 10px;
+      border-radius: 3px;
+      border-style: none;
+      background: #cc9900;
+      color: white;
+    }
+    .all-comment {
+    width: 98.6%;
+    margin-top: 20px;
+    }
+    .all-all-comment {
+    width: 96.45%;
+    margin: 0 0 0 5%;
+    border-radius: 6px;
+    }
+
+
+
+  </style>
+{% endblock %}
+{% block a %}
+  <a class="base-span-head"href="{{url_for('user.index')}}">Debug欢乐园</a>
+  <a class="base-a-head base-a-head-fontcolor"href="{{url_for('user.home')}}">Home</a>
+  <a class="base-a-head base-a-head-fontcolor"href="{{url_for('user.user_login')}}">Login</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/todo">Todo</a>
+  <a class="base-a-head base-a-head-fontcolor gua-active"href="/weibo">Weibo</a>
+  <a class="base-a-head base-a-head-fontcolor"href="/blog">Blog</a>
+{% endblock %}
+
+{% block img %}/static/img/tm-blog1-img.jpg{% endblock %}
+
+
+{% block content %}
+  <div class="background">
+
+    <div class="content clearfix">
+      {% if user.id == 1 %}
+        <div class="box add-box">
+        <!-- <form action="/add" method="post" class="out"> -->
+            <input id="id-input-weibo" name="weibo" class="wei" placeholder="Weibo"></input>
+            <br>
+            <button id="id-button-weibo-add" class="pure-button pure-button-primary sub"
+             type="submit">新微博</button>
+        <!-- </form> -->
+        </div>
+        {% endif %}
+
+      <div class="box weibo-container">
+        {% for w in weibos %}
+          <div class="weibo-cell cell item" data-id={{w.id}}>
+            <img src="{{ w.user.avatar }}" class="avatar">
+            <span class="span-margin span-margin-name">{{ w.user.username }} :</span>
+            <span class="span-weibo-content">{{ w.weibo }}</span>
+            <span class="right span-margin span-time">{{ w.created_time }}</span>
+
+            <div class="right span-margin">
+              <input type="hidden" name="weibo_id" value={{w.id}}>
+              {% if user.id == 1 %}
+              <button class="weibo-update weibo-button">编辑</button>
+              <button class="weibo-delete weibo-button">删除</button>
+              {% endif %}
+              <a href="#" class="com">评论(<span class="comments_num">{{ w.comments_num }}</span>)</a>
+            </div>
+
+            <div class="comment-div hide">
+              <div class="comment-container comment-container-{{w.id}}">
+                <div class="weibo-div-comment">
+                  <input class="weibo-weiboid-addcomment"type="hidden" name="weibo_id" value={{w.id}}>
+                  <input name="content" class="weibo-input-addcomment left m" placeholder="Comment">
+                  <br><button class="weibo-button-addcomment">评论</button>
+                </div>
+                <div class="all-comment">
+                  <div class="all-all-comment">
+                  {% for c in w.comments %}
+                    <div class="cell-inner item">
+                      <img src="{{ c.user.avatar }}" class="avatar-s">
+                      <span class="name span-margin span-margin-name">{{ c.user.username }} :</span>
+                      <span class="comment">{{ c.content }}</span>
+                      <span class="time right span-margin">{{ c.created_time }}</span>
+
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+    </div>
+
+  </div>
+  </div>
+{% endblock %}
+{% block right %}{% endblock %}
