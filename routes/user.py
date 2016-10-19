@@ -53,7 +53,6 @@ def user_login():
 @main.route('/login', methods=['POST'])
 def login():
     form = request.form
-    print(form)
     username = form.get('username','')
     print(username)
     user = User.query.filter_by(username=username).first()
