@@ -54,9 +54,7 @@ def user_login():
 def login():
     form = request.form
     username = form.get('username','')
-    print(username)
     user = User.query.filter_by(username=username).first()
-    print('uuuuuu:',user)
     status, msg = user.validate_login(form)
     if status:
         session['user_id'] = user.id
@@ -84,7 +82,6 @@ def register():
 @admin_required
 def edit():
     u = current_user()
-    print('popo;', u)
     return render_template('user_update.html', user=u)
 
 
