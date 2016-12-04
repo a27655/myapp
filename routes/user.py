@@ -22,7 +22,7 @@ def index():
         form1 = {
              'username': '管理员',
              'password': '123456',
-             'avatar': '/static/img/马里奥.jpg'
+             'avatar': '/static/img/ma.jpg'
         }
         u1 = User(form1)
         u1.id = int(1)
