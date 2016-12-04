@@ -6,7 +6,7 @@ var log = function() {
 
 api.ajax = function(url, method, form, callback) {
   var data = JSON.stringify(form)
-  log('0000')
+  log('data',data)
   var request = {
     url: url,
     type: method,
@@ -38,6 +38,7 @@ api.get = function(url, response) {
 
 api.post = function(url, form, response) {
   api.ajax(url, 'post', form, response)
+  log('Tmd的url:', form)
 }
 
 
