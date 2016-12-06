@@ -44,11 +44,9 @@ def admin_required_login(f):
 @admin_required
 def todo_add():
     form = request.get_json()
-    print('form是啥：', form)
     u = current_user()
     t = Todo(form)
     t.user = u
-    print('看看：', t)
     if t.valid():
         t.save()
         return api_response(True, data=t.json())
