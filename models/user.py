@@ -77,15 +77,19 @@ class User(db.Model, ModelMixin):
     def update_valid(self, cu):
         u = User.query.filter_by(username=self.username).first()
 
-        if u is not None and cu == u:
+        if u is not None:
+            if u.username == cu.username:
+                valid_username = True
+            else:
+                valid_username = False
+
+        if u is None:
             valid_username = True
-        if u is not None and cu != u:
-            valid_username = None
 
         valid_username_len = len(self.username) >= 6
         valid_password_len = len(self.password) >= 6
         valid_captcha = self.captcha == '吃瓜群众'
-        msgs = ['注册成功，请登录']
+        msgs = ['资料修改成功']
         if not valid_username:
             message = '用户名已经存在'
             msgs.append(message)

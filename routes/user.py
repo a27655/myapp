@@ -96,7 +96,7 @@ def update():
     if status == True and len(msgs) == 1 :
         u.username = form.get('username', '')
         u.password = form.get('password', '')
-        u.avatar = form.get('avatar', '/static/img/钢铁侠.jpg')
+        u.avatar = form.get('avatar', '/static/img/3.jpg')
         u.qq = form.get('qq', '他还没来的及输入他的QQ')
         u.email = form.get('email', '他还没来得及输入他的Email')
         u.sign = form.get('sign', '他还没有签名')
