@@ -18,7 +18,6 @@ class Comment(db.Model, ModelMixin):
 
     def valid(self, w):
         if len(self.content) == 0:
-            print('len(self.content):', len(self.content))
             return False
 
         else:

@@ -14,7 +14,6 @@ def api_response(success, data=None, message=''):
         'data': data,
         'message': message
     }
-    print('看看R：', r)
     return json.dumps(r, ensure_ascii=False)
 
 
@@ -59,14 +58,11 @@ def todo_add():
 @admin_required
 def todo_update():
     form = request.get_json()
-    print('kjkj:', form)
     u = current_user()
     tid = form.get('id', '-1')
     t = Todo.query.get(tid)
-    print('看看t', t)
     t.created_time = t.time()
     t.task = form.get('content', '')
-    print('再看看新t', t)
     if t.valid():
         t.save()
         return api_response(True, data=t.json())
@@ -101,12 +97,9 @@ def todo_delete(todo_id):
 @admin_required
 def weibo_add():
     form = request.get_json()
-    print('form是啥：', form)
     u = current_user()
     t = Weibo(form)
-    print('看看t', t)
     t.user = u
-    print('看看：', t)
     if t.valid():
         t.save()
         return api_response(True, data=t.json())
@@ -118,9 +111,7 @@ def weibo_add():
 @main.route('/weibo/delete/<int:weibo_id>', methods=['GET'])
 @admin_required
 def weibo_delete(weibo_id):
-
     w = Weibo.query.get(weibo_id)
-    print('啦啦W：', w)
     w.delete()
     if Weibo.query.get(weibo_id) is None:
         return api_response(True)
@@ -134,14 +125,11 @@ def weibo_delete(weibo_id):
 @admin_required
 def weibo_update():
     form = request.get_json()
-    print('kjkj:', form)
     u = current_user()
     wid = form.get('id', '-1')
     t = Weibo.query.get(wid)
-    print('看看t', t)
     t.created_time = t.time()
     t.weibo = form.get('weibo', '')
-    print('再看看新t', t)
     if t.valid():
         t.save()
         return api_response(True, data=t.json())
@@ -158,11 +146,8 @@ def comment_add():
     c = Comment(form)
     c.user = u
     wid = form.get('weibo_id')
-    print('lll:', wid)
     w = Weibo.query.get(wid)
-    print('kkk:', w)
     c.weibo = w
-    print('ppp', c.weibo)
     if c.valid(w):
         c.save()
         return api_response(True, data=c.json())
@@ -181,11 +166,8 @@ def commentblog_add():
     c = Comment(form)
     c.user = u
     bid = form.get('blog_id')
-    print('lll:', bid)
     b = Blog.query.get(bid)
-    print('kkk:', b)
     c.blog = b
-    print('ppp', c.weibo)
     if c.valid(w=b):
         c.save()
 
