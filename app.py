@@ -36,7 +36,7 @@ def configure_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     app.secret_key = 'poipyqwetrlkjhsadfzxcv'
     #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(db_path)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:yang@localhost/myhome'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:yang@localhost/myapp'
     db.init_app(app)
     app.register_blueprint(routes_todo, url_prefix='/todo')
     app.register_blueprint(routes_api, url_prefix='/api')
