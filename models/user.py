@@ -31,7 +31,7 @@ class User(db.Model, ModelMixin):
         self.username = form.get('username', '')
         self.password = form.get('password', '')
         self.created_time = self.time()
-        self.avatar = form.get('avatar', '/static/img/钢铁侠.jpg')
+        self.avatar = form.get('avatar', '/static/img/3.jpg')
         self.qq = form.get('qq', '他还没来的及输入他的QQ')
         self.email = form.get('email', '他还没来得及输入他的Email')
         self.sign = form.get('sign', '他还没有签名')
