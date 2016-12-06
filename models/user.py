@@ -40,18 +40,18 @@ class User(db.Model, ModelMixin):
     def valid(self):
         u = User.query.filter_by(username=self.username).first()
         valid_username = User.query.filter_by(username=self.username).first() == None
-        valid_username_len = len(self.username) >= 6
-        valid_password_len = len(self.password) >= 6
+        valid_username_len = len(self.username) >= 5
+        valid_password_len = len(self.password) >= 5
         valid_captcha = self.captcha == '吃瓜群众'
         msgs = ['注册成功，请登录']
         if not valid_username:
             message = '用户名已经存在'
             msgs.append(message)
         elif not valid_username_len:
-            message = '用户名长度必须大于等于 6'
+            message = '用户名长度必须大于等于 5'
             msgs.append(message)
         elif not valid_password_len:
-            message = '密码长度必须大于等于 6'
+            message = '密码长度必须大于等于 5'
             msgs.append(message)
         elif not valid_captcha:
             message = '验证码必须输入 ‘吃瓜群众’'
@@ -86,18 +86,18 @@ class User(db.Model, ModelMixin):
         if u is None:
             valid_username = True
 
-        valid_username_len = len(self.username) >= 6
-        valid_password_len = len(self.password) >= 6
+        valid_username_len = len(self.username) >= 5
+        valid_password_len = len(self.password) >= 5
         valid_captcha = self.captcha == '吃瓜群众'
         msgs = ['资料修改成功']
         if not valid_username:
             message = '用户名已经存在'
             msgs.append(message)
         elif not valid_username_len:
-            message = '用户名长度必须大于等于 6'
+            message = '用户名长度必须大于等于 5'
             msgs.append(message)
         elif not valid_password_len:
-            message = '密码长度必须大于等于 6'
+            message = '密码长度必须大于等于 5'
             msgs.append(message)
         elif not valid_captcha:
             message = '验证码必须输入 ‘吃瓜群众’'
