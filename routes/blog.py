@@ -63,7 +63,8 @@ def delete(blog_id):
 @main.route('/edit/<int:blog_id>')
 @admin_required
 def edit(blog_id):
-    return render_template('blog_edit.html', blog_id=blog_id)
+    u = current_user()
+    return render_template('blog_edit.html', blog_id=blog_id, user=u)
 
 
 @main.route('/update', methods=['POST'])
@@ -81,8 +82,9 @@ def update():
 
 @main.route('/cell/<int:blog_id>')
 def cell(blog_id):
+    u = current_user()
     blog = Blog.query.get(blog_id)
-    return render_template('blog_cell.html', b=blog)
+    return render_template('blog_cell.html', b=blog, user=u)
 
 
 @main.route('/comment', methods=['POST'])
@@ -100,4 +102,4 @@ def comment():
     if c.valid(w=b):
         c.save()
         b.comments_num = len(b.comments)
-    return render_template('blog_cell.html', b=b)
+    return render_template('blog_cell.html', b=b, user=u)
