@@ -11,6 +11,8 @@ def add():
     u = current_user()
     if u:
         form = request.form
+        print ('ceuicec')
+
         f = Follow(form)
         f.fans = u
         f.save()
@@ -24,6 +26,8 @@ def delete():
     u = current_user()
     if u:
         form = request.form
+        print ('ceuicec')
+
         f = Follow.query.get(form.get('follow_id', ''))
         f.delete()
     else:
